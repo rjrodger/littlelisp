@@ -156,6 +156,13 @@ describe('littleLisp', function() {
       it('should accept empty binding list', function() {
         expect(t.interpret(t.parse("(let () 42)"))).toEqual(42);
       });
+
+      it('should execute named lambdas', function() {
+        expect(t.interpret(t.parse(
+          "(let ((q (lambda (x) (rest x)))) (q (1 2 3)))"
+        ))).toEqual([2, 3])
+      })
+      
     });
 
     describe('if', function() {
